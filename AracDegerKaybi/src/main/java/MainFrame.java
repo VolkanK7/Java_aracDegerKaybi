@@ -10,17 +10,22 @@ public class MainFrame extends javax.swing.JFrame {
         int number = Integer.parseInt(value);
         double price = Double.parseDouble(txtCarPrice.getText());
         double t = (number * factor * price) / 100;
-        String newT = String.format(Locale.US,"%.2f", t);
+        String newT = String.format(Locale.US, "%.2f", t);
         return Double.parseDouble(newT);
     }
 
     public double calculateWithDiscretion(double factor) {
-        String value = JOptionPane.showInputDialog(null, "Eksper Takdir Değeri Giriniz");
-        double discretion  = Double.parseDouble(value);
-        double price = Double.parseDouble(txtCarPrice.getText());
-        double t = (discretion  * factor * price) / 100;
-        String newT = String.format(Locale.US,"%.2f", t);
-        return Double.parseDouble(newT);
+        String value = JOptionPane.showInputDialog(null, "Eksper Takdir Değeri Giriniz (1-5)");
+        double discretion = Double.parseDouble(value);
+        if (discretion < 1 || discretion > 5) {
+            JOptionPane.showMessageDialog(null, "Eksper Takdir Değeri 1 ile 5 arasında olmalıdır!");
+            return 0;
+        } else {
+            double price = Double.parseDouble(txtCarPrice.getText());
+            double t = (discretion * factor * price) / 100;
+            String newT = String.format(Locale.US, "%.2f", t);
+            return Double.parseDouble(newT);
+        }
     }
 
     DefaultTableModel model;
@@ -447,129 +452,273 @@ public class MainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cbSaseDuzeltmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbSaseDuzeltmeActionPerformed
-        String s = String.valueOf(calculateWithDiscretion(0.7));
-        String data[] = {cbSaseDuzeltme.getText(),s};
-        DefaultTableModel model = (DefaultTableModel) tableCarValue.getModel();
-        model.addRow(data);
+        String carPrice = txtCarPrice.getText();
+        String carKM = txtCarKM.getText();
+        boolean state = false;
+        if (carPrice.isEmpty() || carKM.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Lütfen önce Araç Değeri ve KM bilgisi giriniz.");
+            cbSaseDuzeltme.setSelected(state);
+        } else {
+            String s = String.valueOf(calculateWithDiscretion(0.7));
+            String data[] = {cbSaseDuzeltme.getText(), s};
+            DefaultTableModel model = (DefaultTableModel) tableCarValue.getModel();
+            model.addRow(data);
+        }
     }//GEN-LAST:event_cbSaseDuzeltmeActionPerformed
 
     private void cbSaseKesmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbSaseKesmeActionPerformed
-        String s = String.valueOf(calculateWithDiscretion(0.75));
-        String data[] = {cbSaseKesme.getText(),s};
-        DefaultTableModel model = (DefaultTableModel) tableCarValue.getModel();
-        model.addRow(data);
+        String carPrice = txtCarPrice.getText();
+        String carKM = txtCarKM.getText();
+        boolean state = false;
+        if (carPrice.isEmpty() || carKM.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Lütfen önce Araç Değeri ve KM bilgisi giriniz.");
+            cbSaseKesme.setSelected(state);
+        } else {
+            String s = String.valueOf(calculateWithDiscretion(0.75));
+            String data[] = {cbSaseKesme.getText(), s};
+            DefaultTableModel model = (DefaultTableModel) tableCarValue.getModel();
+            model.addRow(data);
+        }
     }//GEN-LAST:event_cbSaseKesmeActionPerformed
 
     private void cbTavanSaciDuzeltmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTavanSaciDuzeltmeActionPerformed
-        String s = String.valueOf(calculateWithDiscretion(0.7));
-        String data[] = {cbTavanSaciDuzeltme.getText(),s};
-        DefaultTableModel model = (DefaultTableModel) tableCarValue.getModel();
-        model.addRow(data);
+        String carPrice = txtCarPrice.getText();
+        String carKM = txtCarKM.getText();
+        boolean state = false;
+        if (carPrice.isEmpty() || carKM.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Lütfen önce Araç Değeri ve KM bilgisi giriniz.");
+            cbTavanSaciDuzeltme.setSelected(state);
+        } else {
+            String s = String.valueOf(calculateWithDiscretion(0.7));
+            String data[] = {cbTavanSaciDuzeltme.getText(), s};
+            DefaultTableModel model = (DefaultTableModel) tableCarValue.getModel();
+            model.addRow(data);
+        }
     }//GEN-LAST:event_cbTavanSaciDuzeltmeActionPerformed
 
     private void cbOrtaDirekDuzeltmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbOrtaDirekDuzeltmeActionPerformed
-        String s = String.valueOf(calculateWithDiscretion(0.7));
-        String data[] = {cbOrtaDirekDuzeltme.getText(),s};
-        DefaultTableModel model = (DefaultTableModel) tableCarValue.getModel();
-        model.addRow(data);
+        String carPrice = txtCarPrice.getText();
+        String carKM = txtCarKM.getText();
+        boolean state = false;
+        if (carPrice.isEmpty() || carKM.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Lütfen önce Araç Değeri ve KM bilgisi giriniz.");
+            cbOrtaDirekDuzeltme.setSelected(state);
+        } else {
+            String s = String.valueOf(calculateWithDiscretion(0.7));
+            String data[] = {cbOrtaDirekDuzeltme.getText(), s};
+            DefaultTableModel model = (DefaultTableModel) tableCarValue.getModel();
+            model.addRow(data);
+        }
     }//GEN-LAST:event_cbOrtaDirekDuzeltmeActionPerformed
 
     private void cbArkaPanelDuzeltmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbArkaPanelDuzeltmeActionPerformed
-        String s = String.valueOf(calculateWithDiscretion(0.7));
-        String data[] = {cbArkaPanelDuzeltme.getText(),s};
-        DefaultTableModel model = (DefaultTableModel) tableCarValue.getModel();
-        model.addRow(data);
+        String carPrice = txtCarPrice.getText();
+        String carKM = txtCarKM.getText();
+        boolean state = false;
+        if (carPrice.isEmpty() || carKM.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Lütfen önce Araç Değeri ve KM bilgisi giriniz.");
+            cbArkaPanelDuzeltme.setSelected(state);
+        } else {
+            String s = String.valueOf(calculateWithDiscretion(0.7));
+            String data[] = {cbArkaPanelDuzeltme.getText(), s};
+            DefaultTableModel model = (DefaultTableModel) tableCarValue.getModel();
+            model.addRow(data);
+        }
     }//GEN-LAST:event_cbArkaPanelDuzeltmeActionPerformed
 
     private void cbHavuzSaciDuzeltmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbHavuzSaciDuzeltmeActionPerformed
-        String s = String.valueOf(calculateWithDiscretion(0.7));
-        String data[] = {cbHavuzSaciDuzeltme.getText(),s};
-        DefaultTableModel model = (DefaultTableModel) tableCarValue.getModel();
-        model.addRow(data);
+        String carPrice = txtCarPrice.getText();
+        String carKM = txtCarKM.getText();
+        boolean state = false;
+        if (carPrice.isEmpty() || carKM.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Lütfen önce Araç Değeri ve KM bilgisi giriniz.");
+            cbHavuzSaciDuzeltme.setSelected(state);
+        } else {
+            String s = String.valueOf(calculateWithDiscretion(0.7));
+            String data[] = {cbHavuzSaciDuzeltme.getText(), s};
+            DefaultTableModel model = (DefaultTableModel) tableCarValue.getModel();
+            model.addRow(data);
+        }
     }//GEN-LAST:event_cbHavuzSaciDuzeltmeActionPerformed
 
     private void cbArkaCamurlukDuzeltmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbArkaCamurlukDuzeltmeActionPerformed
-        String s = String.valueOf(calculateWithDiscretion(0.7));
-        String data[] = {cbArkaCamurlukDuzeltme.getText(),s};
-        DefaultTableModel model = (DefaultTableModel) tableCarValue.getModel();
-        model.addRow(data);
+        String carPrice = txtCarPrice.getText();
+        String carKM = txtCarKM.getText();
+        boolean state = false;
+        if (carPrice.isEmpty() || carKM.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Lütfen önce Araç Değeri ve KM bilgisi giriniz.");
+            cbArkaCamurlukDuzeltme.setSelected(state);
+        } else {
+            String s = String.valueOf(calculateWithDiscretion(0.7));
+            String data[] = {cbArkaCamurlukDuzeltme.getText(), s};
+            DefaultTableModel model = (DefaultTableModel) tableCarValue.getModel();
+            model.addRow(data);
+        }
     }//GEN-LAST:event_cbArkaCamurlukDuzeltmeActionPerformed
 
     private void cbMarspiyelDuzeltmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMarspiyelDuzeltmeActionPerformed
-        String s = String.valueOf(calculateWithDiscretion(0.7));
-        String data[] = {cbMarspiyelDuzeltme.getText(),s};
-        DefaultTableModel model = (DefaultTableModel) tableCarValue.getModel();
-        model.addRow(data);
+        String carPrice = txtCarPrice.getText();
+        String carKM = txtCarKM.getText();
+        boolean state = false;
+        if (carPrice.isEmpty() || carKM.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Lütfen önce Araç Değeri ve KM bilgisi giriniz.");
+            cbMarspiyelDuzeltme.setSelected(state);
+        } else {
+            String s = String.valueOf(calculateWithDiscretion(0.7));
+            String data[] = {cbMarspiyelDuzeltme.getText(), s};
+            DefaultTableModel model = (DefaultTableModel) tableCarValue.getModel();
+            model.addRow(data);
+        }
     }//GEN-LAST:event_cbMarspiyelDuzeltmeActionPerformed
 
     private void cbOrtaDirekDegisimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbOrtaDirekDegisimActionPerformed
-        String s = String.valueOf(calculateWithNumber(3));
-        String data[] = {cbOrtaDirekDegisim.getText(),s};
-        DefaultTableModel model = (DefaultTableModel) tableCarValue.getModel();
-        model.addRow(data);
+        String carPrice = txtCarPrice.getText();
+        String carKM = txtCarKM.getText();
+        boolean state = false;
+        if (carPrice.isEmpty() || carKM.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Lütfen önce Araç Değeri ve KM bilgisi giriniz.");
+            cbOrtaDirekDegisim.setSelected(state);
+        } else {
+            String s = String.valueOf(calculateWithNumber(3));
+            String data[] = {cbOrtaDirekDegisim.getText(), s};
+            DefaultTableModel model = (DefaultTableModel) tableCarValue.getModel();
+            model.addRow(data);
+        }
     }//GEN-LAST:event_cbOrtaDirekDegisimActionPerformed
 
     private void cbMarspiyelDegisimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMarspiyelDegisimActionPerformed
-        String s = String.valueOf(calculateWithNumber(3));
-        String data[] = {cbMarspiyelDegisim.getText(),s};
-        DefaultTableModel model = (DefaultTableModel) tableCarValue.getModel();
-        model.addRow(data);
+        String carPrice = txtCarPrice.getText();
+        String carKM = txtCarKM.getText();
+        boolean state = false;
+        if (carPrice.isEmpty() || carKM.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Lütfen önce Araç Değeri ve KM bilgisi giriniz.");
+            cbMarspiyelDegisim.setSelected(state);
+        } else {
+            String s = String.valueOf(calculateWithNumber(3));
+            String data[] = {cbMarspiyelDegisim.getText(), s};
+            DefaultTableModel model = (DefaultTableModel) tableCarValue.getModel();
+            model.addRow(data);
+        }
     }//GEN-LAST:event_cbMarspiyelDegisimActionPerformed
 
     private void cbArkaCamurlukDegisimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbArkaCamurlukDegisimActionPerformed
-        String s = String.valueOf(calculateWithNumber(3.5));
-        String data[] = {cbArkaCamurlukDegisim.getText(),s};
-        DefaultTableModel model = (DefaultTableModel) tableCarValue.getModel();
-        model.addRow(data);
+        String carPrice = txtCarPrice.getText();
+        String carKM = txtCarKM.getText();
+        boolean state = false;
+        if (carPrice.isEmpty() || carKM.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Lütfen önce Araç Değeri ve KM bilgisi giriniz.");
+            cbArkaCamurlukDegisim.setSelected(state);
+        } else {
+            String s = String.valueOf(calculateWithNumber(3.5));
+            String data[] = {cbArkaCamurlukDegisim.getText(), s};
+            DefaultTableModel model = (DefaultTableModel) tableCarValue.getModel();
+            model.addRow(data);
+        }
     }//GEN-LAST:event_cbArkaCamurlukDegisimActionPerformed
 
     private void cbHavuzSaciDegisimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbHavuzSaciDegisimActionPerformed
-        String s = String.valueOf(calculateWithNumber(3));
-        String data[] = {cbHavuzSaciDegisim.getText(),s};
-        DefaultTableModel model = (DefaultTableModel) tableCarValue.getModel();
-        model.addRow(data);
+        String carPrice = txtCarPrice.getText();
+        String carKM = txtCarKM.getText();
+        boolean state = false;
+        if (carPrice.isEmpty() || carKM.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Lütfen önce Araç Değeri ve KM bilgisi giriniz.");
+            cbHavuzSaciDegisim.setSelected(state);
+        } else {
+            String s = String.valueOf(calculateWithNumber(3));
+            String data[] = {cbHavuzSaciDegisim.getText(), s};
+            DefaultTableModel model = (DefaultTableModel) tableCarValue.getModel();
+            model.addRow(data);
+        }
     }//GEN-LAST:event_cbHavuzSaciDegisimActionPerformed
 
     private void cbArkaPanelDegisimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbArkaPanelDegisimActionPerformed
-        String s = String.valueOf(calculateWithNumber(2.5));
-        String data[] = {cbArkaPanelDegisim.getText(),s};
-        DefaultTableModel model = (DefaultTableModel) tableCarValue.getModel();
-        model.addRow(data);
+        String carPrice = txtCarPrice.getText();
+        String carKM = txtCarKM.getText();
+        boolean state = false;
+        if (carPrice.isEmpty() || carKM.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Lütfen önce Araç Değeri ve KM bilgisi giriniz.");
+            cbArkaPanelDegisim.setSelected(state);
+        } else {
+            String s = String.valueOf(calculateWithNumber(2.5));
+            String data[] = {cbArkaPanelDegisim.getText(), s};
+            DefaultTableModel model = (DefaultTableModel) tableCarValue.getModel();
+            model.addRow(data);
+        }
     }//GEN-LAST:event_cbArkaPanelDegisimActionPerformed
 
     private void cbTavanSaciDegisimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTavanSaciDegisimActionPerformed
-        String s = String.valueOf(calculateWithNumber(4.5));
-        String data[] = {cbTavanSaciDegisim.getText(),s};
-        DefaultTableModel model = (DefaultTableModel) tableCarValue.getModel();
-        model.addRow(data);
+        String carPrice = txtCarPrice.getText();
+        String carKM = txtCarKM.getText();
+        boolean state = false;
+        if (carPrice.isEmpty() || carKM.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Lütfen önce Araç Değeri ve KM bilgisi giriniz.");
+            cbTavanSaciDegisim.setSelected(state);
+        } else {
+            String s = String.valueOf(calculateWithNumber(4.5));
+            String data[] = {cbTavanSaciDegisim.getText(), s};
+            DefaultTableModel model = (DefaultTableModel) tableCarValue.getModel();
+            model.addRow(data);
+        }
     }//GEN-LAST:event_cbTavanSaciDegisimActionPerformed
 
     private void cbBoyaUygulananAksamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbBoyaUygulananAksamActionPerformed
-        String s = String.valueOf(calculateWithNumber(0.75));
-        String data[] = {cbBoyaUygulananAksam.getText(),s};
-        DefaultTableModel model = (DefaultTableModel) tableCarValue.getModel();
-        model.addRow(data);
+        String carPrice = txtCarPrice.getText();
+        String carKM = txtCarKM.getText();
+        boolean state = false;
+        if (carPrice.isEmpty() || carKM.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Lütfen önce Araç Değeri ve KM bilgisi giriniz.");
+            cbBoyaUygulananAksam.setSelected(state);
+        } else {
+            String s = String.valueOf(calculateWithNumber(0.75));
+            String data[] = {cbBoyaUygulananAksam.getText(), s};
+            DefaultTableModel model = (DefaultTableModel) tableCarValue.getModel();
+            model.addRow(data);
+        }
     }//GEN-LAST:event_cbBoyaUygulananAksamActionPerformed
 
     private void cbKaynakYapilanKaportaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbKaynakYapilanKaportaActionPerformed
-        String s = String.valueOf(calculateWithNumber(1.2));
-        String data[] = {cbKaynakYapilanKaporta.getText(),s};
-        DefaultTableModel model = (DefaultTableModel) tableCarValue.getModel();
-        model.addRow(data);
+        String carPrice = txtCarPrice.getText();
+        String carKM = txtCarKM.getText();
+        boolean state = false;
+        if (carPrice.isEmpty() || carKM.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Lütfen önce Araç Değeri ve KM bilgisi giriniz.");
+            cbKaynakYapilanKaporta.setSelected(state);
+        } else {
+            String s = String.valueOf(calculateWithNumber(1.2));
+            String data[] = {cbKaynakYapilanKaporta.getText(), s};
+            DefaultTableModel model = (DefaultTableModel) tableCarValue.getModel();
+            model.addRow(data);
+        }
     }//GEN-LAST:event_cbKaynakYapilanKaportaActionPerformed
 
     private void cbDuzeltmeYapilanKaportaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbDuzeltmeYapilanKaportaActionPerformed
-        String s = String.valueOf(calculateWithNumber(1.2));
-        String data[] = {cbDuzeltmeYapilanKaporta.getText(),s};
-        DefaultTableModel model = (DefaultTableModel) tableCarValue.getModel();
-        model.addRow(data);
+        String carPrice = txtCarPrice.getText();
+        String carKM = txtCarKM.getText();
+        boolean state = false;
+        if (carPrice.isEmpty() || carKM.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Lütfen önce Araç Değeri ve KM bilgisi giriniz.");
+            cbDuzeltmeYapilanKaporta.setSelected(state);
+        } else {
+            String s = String.valueOf(calculateWithNumber(1.2));
+            String data[] = {cbDuzeltmeYapilanKaporta.getText(), s};
+            DefaultTableModel model = (DefaultTableModel) tableCarValue.getModel();
+            model.addRow(data);
+        }
     }//GEN-LAST:event_cbDuzeltmeYapilanKaportaActionPerformed
 
     private void cbDegisenKaportaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbDegisenKaportaActionPerformed
-        String s = String.valueOf(calculateWithNumber(1));
-        String data[] = {cbDegisenKaporta.getText(),s};
-        DefaultTableModel model = (DefaultTableModel) tableCarValue.getModel();
-        model.addRow(data);
+        String carPrice = txtCarPrice.getText();
+        String carKM = txtCarKM.getText();
+        boolean state = false;
+        if (carPrice.isEmpty() || carKM.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Lütfen önce Araç Değeri ve KM bilgisi giriniz.");
+            cbDegisenKaporta.setSelected(state);
+        } else {
+            String s = String.valueOf(calculateWithNumber(1));
+            String data[] = {cbDegisenKaporta.getText(), s};
+            DefaultTableModel model = (DefaultTableModel) tableCarValue.getModel();
+            model.addRow(data);
+        }
     }//GEN-LAST:event_cbDegisenKaportaActionPerformed
 
     private void btnCalculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalculateActionPerformed
@@ -578,14 +727,20 @@ public class MainFrame extends javax.swing.JFrame {
             t += Double.parseDouble(tableCarValue.getValueAt(i, 1).toString());
         }
         double carKM = Double.parseDouble(txtCarKM.getText());
-        double degerKaybi = (t - ((t * (carKM - 15000) / 75000) / 2));
-        
-        lblValue.setText("Değer Kaybı : "+String.format(Locale.US,"%.2f", degerKaybi) + " ₺");
-        
+        double degerKaybi;
+
+        if (carKM < 15000) {
+            degerKaybi = t;
+        } else {
+            degerKaybi = (t - ((t * (carKM - 15000) / 75000) / 2));
+        }
+
+        lblValue.setText("Değer Kaybı : " + String.format(Locale.US, "%.2f", degerKaybi) + " ₺");
+
         double carValue = Double.parseDouble(txtCarPrice.getText());
         double newCarValue = carValue - degerKaybi;
-        
-        lblNewCarValue.setText("Yeni Araç Değeri : "+String.format(Locale.US,"%.2f", newCarValue) + " ₺");
+
+        lblNewCarValue.setText("Yeni Araç Değeri : " + String.format(Locale.US, "%.2f", newCarValue) + " ₺");
     }//GEN-LAST:event_btnCalculateActionPerformed
 
     public static void main(String args[]) {
