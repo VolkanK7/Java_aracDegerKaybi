@@ -5,24 +5,26 @@ import javax.swing.table.DefaultTableModel;
 
 public class MainFrame extends javax.swing.JFrame {
 
-    public double calculateWithNumber(double factor) {
+    //Adet değerine bağlı olarak değer hesaplama fonksiyonu
+    public double calculateWithPiece(double factor) {
         String value = JOptionPane.showInputDialog(null, "Adet Giriniz");
-        int number = Integer.parseInt(value);
+        int piece = Integer.parseInt(value);
         double price = Double.parseDouble(txtCarPrice.getText());
-        double t = (number * factor * price) / 100;
-        String newT = String.format(Locale.US, "%.2f", t);
+        double t = (piece * factor * price) / 100; // Değer, (adet*parça değer faktörü*araç fiyatı) formülüyle hesaplandı.
+        String newT = String.format(Locale.US, "%.2f", t); //Hesaplanan değer 0,00 formatına dönüştürüldü.
         return Double.parseDouble(newT);
     }
 
+    //Eksper takdir değerine bağlı olarak hesaplama fonksiyonu
     public double calculateWithDiscretion(double factor) {
         String value = JOptionPane.showInputDialog(null, "Eksper Takdir Değeri Giriniz (1-5)");
-        double discretion = Double.parseDouble(value);
-        if (discretion < 1 || discretion > 5) {
+        double discretion = Double.parseDouble(value); //Eksper takdir değeri alınarak Double dönüşümü yapıldı.
+        if (discretion < 1 || discretion > 5) { //Değerin 1 ile 5 arasında değer alabilmesi için kontroller yapıldı.
             JOptionPane.showMessageDialog(null, "Eksper Takdir Değeri 1 ile 5 arasında olmalıdır!");
             return 0;
         } else {
             double price = Double.parseDouble(txtCarPrice.getText());
-            double t = (discretion * factor * price) / 100;
+            double t = (discretion * factor * price) / 100; //Değer, (eksper takdiri*parça çarpan değeri*araç fiyatı) formülüyle hesaplandı.
             String newT = String.format(Locale.US, "%.2f", t);
             return Double.parseDouble(newT);
         }
@@ -72,6 +74,9 @@ public class MainFrame extends javax.swing.JFrame {
         lblNewCarValue = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tableCarValue = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Kazalı Araç Değer Kaybı Hesaplayıcı v1.0");
@@ -384,10 +389,31 @@ public class MainFrame extends javax.swing.JFrame {
             tableCarValue.getColumnModel().getColumn(1).setMaxWidth(100);
         }
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
+        jLabel1.setText("1721012176 – Volkan Kaya");
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
+        jLabel2.setText("1821012018 - Kerem Kocaekiz\n");
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
+        jLabel3.setText("1821012034 - Ahmet Deniz Turhan");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblTitle)
+                .addGap(179, 179, 179))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(65, 65, 65)
+                .addComponent(btnCalculate, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblValue, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblNewCarValue, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(69, 69, 69))
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -406,19 +432,13 @@ public class MainFrame extends javax.swing.JFrame {
                                 .addComponent(lblAracDegeri)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txtCarPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblTitle)
-                .addGap(179, 179, 179))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(65, 65, 65)
-                .addComponent(btnCalculate, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblValue, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblNewCarValue, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(69, 69, 69))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -445,7 +465,13 @@ public class MainFrame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblNewCarValue))
                     .addComponent(btnCalculate, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addGap(15, 15, 15))
         );
 
         pack();
@@ -455,12 +481,12 @@ public class MainFrame extends javax.swing.JFrame {
         String carPrice = txtCarPrice.getText();
         String carKM = txtCarKM.getText();
         boolean state = false;
-        if (carPrice.isEmpty() || carKM.isEmpty()) {
+        if (carPrice.isEmpty() || carKM.isEmpty()) { //Parça seçmeden önce Araç değeri ve KM bilgisi zorunlu hale getirildi.
             JOptionPane.showMessageDialog(null, "Lütfen önce Araç Değeri ve KM bilgisi giriniz.");
             cbSaseDuzeltme.setSelected(state);
         } else {
-            String s = String.valueOf(calculateWithDiscretion(0.7));
-            String data[] = {cbSaseDuzeltme.getText(), s};
+            String s = String.valueOf(calculateWithDiscretion(0.7)); //Seçilen parçaya göre ilgili fonksiyona parça çarpan değeri yollandı.
+            String data[] = {cbSaseDuzeltme.getText(), s}; //Tabloya parça adı ve fonksiyondan hesaplanan değer yazdırıldı.
             DefaultTableModel model = (DefaultTableModel) tableCarValue.getModel();
             model.addRow(data);
         }
@@ -579,7 +605,7 @@ public class MainFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Lütfen önce Araç Değeri ve KM bilgisi giriniz.");
             cbOrtaDirekDegisim.setSelected(state);
         } else {
-            String s = String.valueOf(calculateWithNumber(3));
+            String s = String.valueOf(calculateWithPiece(3));
             String data[] = {cbOrtaDirekDegisim.getText(), s};
             DefaultTableModel model = (DefaultTableModel) tableCarValue.getModel();
             model.addRow(data);
@@ -594,7 +620,7 @@ public class MainFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Lütfen önce Araç Değeri ve KM bilgisi giriniz.");
             cbMarspiyelDegisim.setSelected(state);
         } else {
-            String s = String.valueOf(calculateWithNumber(3));
+            String s = String.valueOf(calculateWithPiece(3));
             String data[] = {cbMarspiyelDegisim.getText(), s};
             DefaultTableModel model = (DefaultTableModel) tableCarValue.getModel();
             model.addRow(data);
@@ -609,7 +635,7 @@ public class MainFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Lütfen önce Araç Değeri ve KM bilgisi giriniz.");
             cbArkaCamurlukDegisim.setSelected(state);
         } else {
-            String s = String.valueOf(calculateWithNumber(3.5));
+            String s = String.valueOf(calculateWithPiece(3.5));
             String data[] = {cbArkaCamurlukDegisim.getText(), s};
             DefaultTableModel model = (DefaultTableModel) tableCarValue.getModel();
             model.addRow(data);
@@ -624,7 +650,7 @@ public class MainFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Lütfen önce Araç Değeri ve KM bilgisi giriniz.");
             cbHavuzSaciDegisim.setSelected(state);
         } else {
-            String s = String.valueOf(calculateWithNumber(3));
+            String s = String.valueOf(calculateWithPiece(3));
             String data[] = {cbHavuzSaciDegisim.getText(), s};
             DefaultTableModel model = (DefaultTableModel) tableCarValue.getModel();
             model.addRow(data);
@@ -639,7 +665,7 @@ public class MainFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Lütfen önce Araç Değeri ve KM bilgisi giriniz.");
             cbArkaPanelDegisim.setSelected(state);
         } else {
-            String s = String.valueOf(calculateWithNumber(2.5));
+            String s = String.valueOf(calculateWithPiece(2.5));
             String data[] = {cbArkaPanelDegisim.getText(), s};
             DefaultTableModel model = (DefaultTableModel) tableCarValue.getModel();
             model.addRow(data);
@@ -654,7 +680,7 @@ public class MainFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Lütfen önce Araç Değeri ve KM bilgisi giriniz.");
             cbTavanSaciDegisim.setSelected(state);
         } else {
-            String s = String.valueOf(calculateWithNumber(4.5));
+            String s = String.valueOf(calculateWithPiece(4.5));
             String data[] = {cbTavanSaciDegisim.getText(), s};
             DefaultTableModel model = (DefaultTableModel) tableCarValue.getModel();
             model.addRow(data);
@@ -669,7 +695,7 @@ public class MainFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Lütfen önce Araç Değeri ve KM bilgisi giriniz.");
             cbBoyaUygulananAksam.setSelected(state);
         } else {
-            String s = String.valueOf(calculateWithNumber(0.75));
+            String s = String.valueOf(calculateWithPiece(0.75));
             String data[] = {cbBoyaUygulananAksam.getText(), s};
             DefaultTableModel model = (DefaultTableModel) tableCarValue.getModel();
             model.addRow(data);
@@ -684,7 +710,7 @@ public class MainFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Lütfen önce Araç Değeri ve KM bilgisi giriniz.");
             cbKaynakYapilanKaporta.setSelected(state);
         } else {
-            String s = String.valueOf(calculateWithNumber(1.2));
+            String s = String.valueOf(calculateWithPiece(1.2));
             String data[] = {cbKaynakYapilanKaporta.getText(), s};
             DefaultTableModel model = (DefaultTableModel) tableCarValue.getModel();
             model.addRow(data);
@@ -699,7 +725,7 @@ public class MainFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Lütfen önce Araç Değeri ve KM bilgisi giriniz.");
             cbDuzeltmeYapilanKaporta.setSelected(state);
         } else {
-            String s = String.valueOf(calculateWithNumber(1.2));
+            String s = String.valueOf(calculateWithPiece(1.2));
             String data[] = {cbDuzeltmeYapilanKaporta.getText(), s};
             DefaultTableModel model = (DefaultTableModel) tableCarValue.getModel();
             model.addRow(data);
@@ -714,7 +740,7 @@ public class MainFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Lütfen önce Araç Değeri ve KM bilgisi giriniz.");
             cbDegisenKaporta.setSelected(state);
         } else {
-            String s = String.valueOf(calculateWithNumber(1));
+            String s = String.valueOf(calculateWithPiece(1));
             String data[] = {cbDegisenKaporta.getText(), s};
             DefaultTableModel model = (DefaultTableModel) tableCarValue.getModel();
             model.addRow(data);
@@ -723,22 +749,22 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void btnCalculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalculateActionPerformed
         double t = 0;
-        for (int i = 0; i < tableCarValue.getRowCount(); i++) {
+        for (int i = 0; i < tableCarValue.getRowCount(); i++) { //Döngü ile tablodaki tüm hesaplanmış değerler toplandı.
             t += Double.parseDouble(tableCarValue.getValueAt(i, 1).toString());
         }
         double carKM = Double.parseDouble(txtCarKM.getText());
         double degerKaybi;
 
-        if (carKM < 15000) {
+        if (carKM < 15000) { //Değer kaybı formülü uygulandı.
             degerKaybi = t;
         } else {
-            degerKaybi = (t - ((t * (carKM - 15000) / 75000) / 2));
+            degerKaybi = Math.abs(t - ((t * (carKM - 15000) / 75000) / 2));
         }
 
-        lblValue.setText("Değer Kaybı : " + String.format(Locale.US, "%.2f", degerKaybi) + " ₺");
+        lblValue.setText("Değer Kaybı : " + String.format(Locale.US, "%.2f", degerKaybi) + " ₺"); //Sonuç formatlanarak ekrana yazdırıldı.
 
         double carValue = Double.parseDouble(txtCarPrice.getText());
-        double newCarValue = carValue - degerKaybi;
+        double newCarValue = Math.abs(carValue - degerKaybi); //Yeni araç değeri hesaplandı ve ekrana yazdırıldı.
 
         lblNewCarValue.setText("Yeni Araç Değeri : " + String.format(Locale.US, "%.2f", newCarValue) + " ₺");
     }//GEN-LAST:event_btnCalculateActionPerformed
@@ -771,6 +797,9 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JCheckBox cbSaseKesme;
     private javax.swing.JCheckBox cbTavanSaciDegisim;
     private javax.swing.JCheckBox cbTavanSaciDuzeltme;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
